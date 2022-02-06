@@ -16,8 +16,12 @@ public class ProcesarArchivosController {
     private ProcesarArchivosService procesarArchivosService;
 
     @GetMapping("/get")
-
     public DataModel consultar(@RequestParam String id) throws Exception {
         return procesarArchivosService.leerArchivos(id);
+    }
+
+    @GetMapping("/ping")
+    public String test(){
+        return "OK";
     }
 }
