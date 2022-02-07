@@ -40,7 +40,7 @@ public class ProcesarArchivosServiceImpl implements ProcesarArchivosService {
     }
 
     private static Object readJsonObject() throws Exception {
-        FileReader reader = new FileReader("/home/elizabeth25/app-test/test-app/src/main/resources/data/data11.json");
+        FileReader reader = new FileReader("/home/elizabeth25/app-test/test-app/src/main/java/com/prueba/service/data11.json");
         JSONParser jsonParser = new JSONParser();
         return jsonParser.parse(reader);
     }
