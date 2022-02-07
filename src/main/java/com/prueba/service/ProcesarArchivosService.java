@@ -4,5 +4,5 @@ import com.prueba.model.DataModel;
 
 public interface ProcesarArchivosService {
 
-    DataModel leerArchivos(String id) throws Exception;
+    DataModel leerArchivos(Long id) throws Exception;
 }

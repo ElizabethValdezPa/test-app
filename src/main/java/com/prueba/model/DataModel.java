@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class DataModel {
 
-    private String id;
+    private Long id;
     private String href;
     private String correlationId;
     private String description;

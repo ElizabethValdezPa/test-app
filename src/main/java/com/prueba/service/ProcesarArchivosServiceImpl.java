@@ -1,5 +1,6 @@
 package com.prueba.service;
 
+import ch.qos.logback.classic.Logger;
 import com.prueba.model.AdditionalData;
 import com.prueba.model.Channel;
 import com.prueba.model.DataModel;
@@ -18,7 +19,7 @@ import java.util.List;
 public class ProcesarArchivosServiceImpl implements ProcesarArchivosService {
 
     @Override
-    public DataModel leerArchivos(String id) throws Exception {
+    public DataModel leerArchivos(Long id) throws Exception {
         JSONObject ss = (JSONObject) readJsonObject();
 
         JSONArray jsonArray = (JSONArray) ss.get("data");
@@ -26,8 +27,11 @@ public class ProcesarArchivosServiceImpl implements ProcesarArchivosService {
 
         for (int i = 0; i <jsonArray.size(); i++) {
             JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-            if(jsonObject.get("id").toString().equals(id)) {
-                dataModel.setId((String) jsonObject.get("id"));
+            System.out.println("*****");
+            System.out.println(jsonObject.get("id").getClass().getName());
+            System.out.println(id);
+            if(jsonObject.get("id") == id) {
+                dataModel.setId((Long) jsonObject.get("id"));
                 dataModel.setHref((String) jsonObject.get("href"));
                 dataModel.setCorrelationId((String) jsonObject.get("correlationId"));
                 dataModel.setDescription((String) jsonObject.get("description"));
@@ -47,6 +51,7 @@ public class ProcesarArchivosServiceImpl implements ProcesarArchivosService {
 
     }
 
+
     private static Object readJsonObject() throws Exception {
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("data11.json");
         File bathFile = File.createTempFile("filename", "file format");
@@ -55,4 +60,7 @@ public class ProcesarArchivosServiceImpl implements ProcesarArchivosService {
         FileReader reader = new FileReader(bathFile);
         return jsonParser.parse(reader);
     }
+
+
+
 }
